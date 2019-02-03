@@ -13,12 +13,12 @@ import (
 )
 
 type Person struct {
-	Key		*datastore.Key 	`datastore:"__key__"json:"-"`	// JSONには出力しない
-	ID		int64			`datastore:"-"json:"id"`	// JSONでは返すが、Save時には無視する
-	Name	string			`json:"name"`
-	Age		int				`json:"age"`
-	Sex		string			`json:"sex"`
-	Address	string			`json:"address"`
+	Key	*datastore.Key 	`datastore:"__key__"json:"-"`	// JSONには出力しない
+	ID	int64	`datastore:"-"json:"id"`	// JSONでは返すが、Save時には無視する
+	Name	string	`json:"name"`
+	Age	int	`json:"age"`
+	Sex	string	`json:"sex"`
+	Address	string	`json:"address"`
 }
 
 type Persons []Person
