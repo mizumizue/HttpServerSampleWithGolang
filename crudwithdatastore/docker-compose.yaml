@@ -1,0 +1,14 @@
+version: '3'
+services:
+  server:
+    build: ./docker
+    ports:
+      - "8080:8080"
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /var/credential.json
+    env_file:
+      - .env
+    volumes:
+      - ./main.go:/go/src/server/main.go
+      - ./credential.json:/var/credential.json
+    command: go run /go/src/server/main.go
