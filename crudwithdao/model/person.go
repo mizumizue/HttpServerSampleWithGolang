@@ -6,10 +6,10 @@ import (
 )
 
 type Person struct {
-	ID		int64	`datastore:"-"json:"id"`
+	ID	int64	`datastore:"-"json:"id"`
 	Name	string	`json:"name"`
-	Age		int		`json:"age"`
-	Sex		string	`json:"sex"`
+	Age	int	`json:"age"`
+	Sex	string	`json:"sex"`
 	Address	string	`json:"address"`
 }
 
