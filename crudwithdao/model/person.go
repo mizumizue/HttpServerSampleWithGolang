@@ -43,7 +43,7 @@ func (dao *DatastorePersonDao) Get(id int64) (Person, error) {
 	}
 	defer dao.client.Close()
 
-	key := datastore.IDKey("Person", id, nil)
+	key := datastore.IDKey(dao.kind, id, nil)
 	var p Person
 	if err := dao.client.Get(dao.ctx, key, &p); err != nil {
 		return p, err
@@ -99,7 +99,7 @@ func (dao *DatastorePersonDao) Delete(id int64) error {
 	}
 	defer dao.client.Close()
 
-	key := datastore.IDKey("Person", id, nil)
+	key := datastore.IDKey(dao.kind, id, nil)
 	if err := dao.client.Delete(dao.ctx, key); err != nil {
 		return err
 	}
