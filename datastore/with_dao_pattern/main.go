@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
-	"gopractices/crudwithdao/model"
+	"go-server-samples/datastore/with_dao_pattern/model"
 	"log"
 	"net/http"
 	"strconv"
