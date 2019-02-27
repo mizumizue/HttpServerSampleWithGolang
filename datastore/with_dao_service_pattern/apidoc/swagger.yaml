@@ -1,0 +1,311 @@
+swagger: "2.0"
+info:
+  description: "TaskList API"
+  version: "1.0.0"
+  title: "Swagger TaskList"
+  termsOfService: ""
+  contact:
+    email: "trewanek@gmail.com"
+host: "localhost"
+basePath: "/api/v2"
+tags:
+  - name: "tasklist"
+    description: ""
+schemes:
+  - "https"
+  - "http"
+paths:
+  /tasklists:
+    get:
+      tags:
+        - "tasklist"
+      operationId: "getTaskLists"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/TaskList"
+        400:
+          description: "INVALID_AUGUMENT"
+        500:
+          description: "INTERNAL"
+    post:
+      tags:
+        - "tasklist"
+      operationId: "addTaskList"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateOrUpdateTaskListRequest"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/TaskList"
+        400:
+          description: "INVALID_AUGUMENT"
+        500:
+          description: "INTERNAL"
+    put:
+      tags:
+        - "tasklist"
+      operationId: "updateTaskList"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateOrUpdateTaskListRequest"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/TaskList"
+        400:
+          description: "INVALID_AUGUMENT"
+        404:
+          description: "NOT_FOUND"
+        500:
+          description: "INTERNAL"
+  /tasklists/{listId}:
+    get:
+      tags:
+        - "tasklist"
+      operationId: "getTaskList"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "listId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        400:
+          description: "INVALID_AUGUMENT"
+        404:
+          description: "NOT_FOUND"
+        500:
+          description: "INTERNAL"
+    delete:
+      tags:
+        - "tasklist"
+      operationId: "deleteTaskList"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "listId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "INVALID_AUGUMENT"
+        404:
+          description: "NOT_FOUND"
+        500:
+          description: "INTERNAL"
+  /tasklists/{listId}/tasks:
+    get:
+      tags:
+        - "task"
+      operationId: "getTasks"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "listId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "INVALID_AUGUMENT"
+        500:
+          description: "INTERNAL"
+    post:
+      tags:
+        - "task"
+      operationId: "addTask"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "listId"
+          in: "path"
+          required: true
+          type: "integer"
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateTaskRequest"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "INVALID_AUGUMENT"
+        500:
+          description: "INTERNAL"
+    put:
+      tags:
+        - "task"
+      operationId: "updateTask"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "listId"
+          in: "path"
+          required: true
+          type: "integer"
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateTaskRequest"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "INVALID_AUGUMENT"
+        404:
+          description: "NOT_FOUND"
+        500:
+          description: "INTERNAL"
+  /tasklists/{listId}/tasks/{taskId}:
+    get:
+      tags:
+        - "task"
+      operationId: "getTask"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "listId"
+          in: "path"
+          required: true
+          type: "integer"
+        - name: "taskId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "INVALID_AUGUMENT"
+        404:
+          description: "NOT_FOUND"
+        500:
+          description: "INTERNAL"
+    delete:
+      tags:
+        - "task"
+      operationId: "deleteTask"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "listId"
+          in: "path"
+          required: true
+          type: "integer"
+        - name: "taskId"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "INVALID_AUGUMENT"
+        404:
+          description: "NOT_FOUND"
+        500:
+          description: "INTERNAL"
+definitions:
+  CreateOrUpdateTaskListRequest:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        format: "int32"
+  TaskList:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+        format: "int32"
+      created:
+        type: "string"
+        format: "date-format"
+      updated:
+        type: "string"
+        format: "date-format"
+  CreateTaskRequest:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+  UpdateTaskRequest:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      done:
+        type: "boolean"
+      deadline:
+        type: "string"
+        format: "date-format"
+  Task:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      done:
+        type: "boolean"
+      deadline:
+        type: "string"
+        format: "date-format"
+      created:
+        type: "string"
+        format: "date-format"
+      updated:
+        type: "string"
+        format: "date-format"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+      status:
+        type: "string"
+      message:
+        type: "string"

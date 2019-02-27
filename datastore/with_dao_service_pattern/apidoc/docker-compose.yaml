@@ -1,0 +1,20 @@
+version: '2'
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    container_name: swagger-ui
+    ports:
+      - 8080:8080
+    volumes:
+      - ./swagger.yaml:/usr/share/nginx/html/swagger.yaml
+    environment:
+      API_URL: swagger.yaml
+  swagger-editor:
+    image: swaggerapi/swagger-editor:latest
+    container_name: swagger-editor
+    ports:
+      - 8081:8080
+    volumes:
+      - ./swagger.yaml:/usr/share/nginx/html/swagger.yaml
+    environment:
+      API_URL: swagger.yaml
