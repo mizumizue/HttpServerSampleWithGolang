@@ -1,3 +1,5 @@
-# Go server side programing samples
+# HttpServerSampleWithGolang
 
-基本のCRUDやRouting周りの書き方を諸々試験的に実装してみたものを置いておく
+This is my practice source code with golang.
+
+This has implementation which contains CRUD and Routing and etc.
